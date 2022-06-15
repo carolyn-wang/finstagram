@@ -25,6 +25,7 @@ import android.widget.Toolbar;
 
 import com.example.finstagram.fragments.ComposeFragment;
 import com.example.finstagram.fragments.PostsFragment;
+import com.example.finstagram.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
@@ -58,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
-                        // TODO: update fragment
                         Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                         fragment = new PostsFragment();
                         break;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.action_profile:
                         Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
-                        fragment = new ComposeFragment();
+                        fragment = new ProfileFragment();
                         break;
                     default: return true;
                 }

@@ -42,8 +42,8 @@ import java.io.File;
  * create an instance of this fragment.
  */
 public class ComposeFragment extends Fragment {
-    public static final String TAG = "ComposeFragment";
-    public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+    private static final String TAG = "ComposeFragment";
+    private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private EditText etDescription;
     private Button btnCaptureImage;
     private ImageView ivPostImage;
