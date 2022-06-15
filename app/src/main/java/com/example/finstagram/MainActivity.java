@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnLogout = findViewById(R.id.btnLogout);
 
+        //        queryPosts();
 
         btnFeed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
                 launchCamera();
             }
         });
-//        queryPosts();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

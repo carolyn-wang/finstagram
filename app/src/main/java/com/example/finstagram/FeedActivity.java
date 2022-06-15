@@ -1,10 +1,14 @@
 package com.example.finstagram;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -21,6 +25,7 @@ public class FeedActivity extends AppCompatActivity {
     protected PostsAdapter adapter;
     protected List<Post> allPosts;
     private SwipeRefreshLayout swipeContainer;
+    public static FragmentManager fragManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,8 @@ public class FeedActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+        fragManager = getSupportFragmentManager();
     }
 
     private void queryPosts() {
@@ -91,4 +98,15 @@ public class FeedActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Replaces current main FeedActivity with post detailFragment
+     */
+    public void openPostDetail(Post post) {
+//        FragmentTransaction ft = fragManager.beginTransaction();
+//        DetailFragment postDetail = DetailFragment.newInstance();
+//        ft.replace(R.id.swipeContainer, postDetail);
+//        ft.commit();
+    }
+
 }
