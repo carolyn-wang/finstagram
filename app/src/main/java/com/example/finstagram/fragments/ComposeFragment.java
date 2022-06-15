@@ -50,7 +50,6 @@ public class ComposeFragment extends Fragment {
     private Button btnSubmit;
     private File photoFile;
     private String photoFileName = "photo.jpg";
-    private Button btnFeed;
     private Button btnLogout;
     private Context mContext;
 
@@ -80,15 +79,7 @@ public class ComposeFragment extends Fragment {
         btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
-        btnFeed = view.findViewById(R.id.btnFeed);
         btnLogout = view.findViewById(R.id.btnLogout);
-
-        btnFeed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goFeedActivity();
-            }
-        });
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener(){
             @Override
