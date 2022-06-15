@@ -38,7 +38,7 @@ import java.io.File;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ComposeFragment#newInstance} factory method to
+ * Use the {@link ComposeFragment #newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ComposeFragment extends Fragment {

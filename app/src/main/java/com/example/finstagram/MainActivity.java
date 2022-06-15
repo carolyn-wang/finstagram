@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -21,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.example.finstagram.fragments.ComposeFragment;
+import com.example.finstagram.fragments.PostsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
@@ -36,6 +40,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
 
 
@@ -45,26 +50,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
+                        // TODO: update fragment
                         Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
+                        fragment = new PostsFragment();
                         break;
                     case R.id.action_compose:
                         Toast.makeText(MainActivity.this, "Compose", Toast.LENGTH_SHORT).show();
+                        fragment = new ComposeFragment();
                         break;
                     case R.id.action_profile:
                         Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
+                        fragment = new ComposeFragment();
                         break;
                     default: return true;
                 }
+                fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
             }
         });
+        // Set default fragment
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 
 }
