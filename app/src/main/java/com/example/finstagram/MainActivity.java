@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSubmit;
     private File photoFile;
     private String photoFileName = "photo.jpg";
+    private Button btnFeed;
 
     private Button btnLogout;
 
@@ -49,9 +51,17 @@ public class MainActivity extends AppCompatActivity {
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
+        btnFeed = findViewById(R.id.btnFeed);
 
         btnLogout = findViewById(R.id.btnLogout);
 
+
+        btnFeed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goFeedActivity();
+            }
+        });
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -66,9 +76,14 @@ public class MainActivity extends AppCompatActivity {
                 String description = etDescription.getText().toString();
                 if (description.isEmpty()){
                     Toast.makeText(MainActivity.this, "Description cannot be empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (photoFile == null || ivPostImage.getDrawable() == null){
+                    Toast.makeText(MainActivity.this, "There is no image!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
                 ParseUser currentUser = ParseUser.getCurrentUser();
-                savePost(description, currentUser);
+                savePost(description, currentUser, photoFile);
             }
         });
 
@@ -144,14 +159,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Return the file target for the photo based on filename
         File file = new File(mediaStorageDir.getPath() + File.separator + photoFileName);
-
         return file;
     }
 
-    private void savePost(String description, ParseUser currentUser) {
+    private void savePost(String description, ParseUser currentUser, File photoFile) {
         Post post = new Post();
         post.setDescription(description);
-//        post.setImage();
+        post.setImage(new ParseFile(photoFile));
         post.setUser(currentUser);
         post.saveInBackground(new SaveCallback() {
             @Override
@@ -162,25 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 Log.i(TAG, "post save was successful!");
                 etDescription.setText("");
-            }
-        });
-    }
-
-    private void queryPosts() {
-        // Specify which class to query
-        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        query.include(Post.KEY_USER);
-        query.findInBackground(new FindCallback<Post>() {
-            @Override
-            public void done(List<Post> posts, ParseException e) {
-                if (e != null){
-                    Log.e(TAG, "Issue with getting posts", e);
-                    return;
-                }
-                for (Post post: posts){
-                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
-                    return;
-                }
+                ivPostImage.setImageResource(0);
             }
         });
     }
@@ -188,6 +184,13 @@ public class MainActivity extends AppCompatActivity {
     private void goLoginActivity() {
         Intent i = new Intent(this, LoginActivity.class);
         startActivity(i);
+        finish();
+    }
+
+    private void goFeedActivity() {
+        Intent i = new Intent(this, FeedActivity.class);
+        startActivity(i);
+        Log.i(TAG, "going to Feed");
         finish();
     }
 }

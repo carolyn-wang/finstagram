@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <queries>
+
         <!-- Camera -->
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
@@ -24,6 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Finstagram"
         tools:targetApi="31">
+        <activity
+            android:name=".FeedActivity"
+            android:exported="false" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -36,17 +40,17 @@
         </provider>
 
         <activity
-            android:name="com.example.finstagram.LoginActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.finstagram.MainActivity"
-            android:exported="false">
-        </activity>
+            android:name=".MainActivity"
+            android:exported="false"></activity>
     </application>
 
 </manifest>
