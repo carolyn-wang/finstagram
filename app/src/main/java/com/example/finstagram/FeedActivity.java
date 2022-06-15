@@ -15,6 +15,7 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public class FeedActivity extends AppCompatActivity {
     private static final String TAG = "FeedActivity";
     private RecyclerView rvPosts;
