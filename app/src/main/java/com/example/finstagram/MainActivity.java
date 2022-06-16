@@ -3,6 +3,7 @@ package com.example.finstagram;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -21,7 +22,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.example.finstagram.fragments.ComposeFragment;
 import com.example.finstagram.fragments.PostsFragment;
@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         bottomNavigationView = findViewById(R.id.bottomNavigation);
 
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
@@ -78,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
         });
         // Set default fragment
         bottomNavigationView.setSelectedItemId(R.id.action_home);
+
+//         Find the toolbar view and set as ActionBar
+        Toolbar topToolbar = findViewById(R.id.topToolbar);
+        setSupportActionBar(topToolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
 }
