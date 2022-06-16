@@ -9,31 +9,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
-
-        <ImageView
-            android:id="@+id/cameraIcon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="start"
-            app:tint="@color/black"
-            android:src="@drawable/direct"/>
-
 <!--        todo: replace variables-->
         <ImageView
             android:id="@+id/logoTitle"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="start"
             android:src="@drawable/nav_logo_whiteout" />
 
 <!--        TODO: set default icon color/size-->
+
         <ImageView
             android:id="@+id/dmIcon"
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_gravity="end"
             app:tint="@color/black"
             android:src="@drawable/direct"/>
+
+        <ImageView
+            android:id="@+id/heartIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="end"
+            app:tint="@color/black"
+            android:src="@drawable/instagram_new_post_outline_24"/>
+
+        <ImageView
+            android:id="@+id/activityIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="end"
+            app:tint="@color/black"
+            android:src="@drawable/ufi_heart"/>
+
     </androidx.appcompat.widget.Toolbar>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,8 +1,24 @@
 package com.example.finstagram.fragments;
 
+import static androidx.recyclerview.widget.StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS;
+import static androidx.recyclerview.widget.StaggeredGridLayoutManager.HORIZONTAL;
+
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Rect;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.finstagram.Post;
+import com.example.finstagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -12,6 +28,17 @@ import java.util.List;
 
 public class ProfileFragment extends PostsFragment{
     private static final String TAG = "PostsFragment";
+    private RecyclerView rvPosts;
+    private Context mContext;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mContext = getContext();
+        rvPosts = view.findViewById(R.id.rvPosts);
+        StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        rvPosts.setLayoutManager(gridLayoutManager);
+    }
 
     @Override
     protected void queryPosts() {
