@@ -1,6 +1,8 @@
 package com.example.finstagram;
 
 import android.content.Context;
+import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.finstagram.fragments.PostsFragment;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -21,6 +25,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     private Context context;
     private List<Post> posts;
+    private static final String TAG = "PostsAdapter";
 
     public PostsAdapter(Context context, List<Post> posts) {
         this.context = context;
@@ -58,6 +63,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private ImageView ivProfileImage;
         private ImageView ivImage;
         private TextView tvDescription;
+        private View itemUser;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +72,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+            itemUser = itemView.findViewById(R.id.itemUser);
         }
 
         public void bind(Post post) {
@@ -80,6 +88,18 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 //            if (profileImage != null) {
                 Glide.with(context).load(profileImage.getUrl()).apply(RequestOptions.circleCropTransform()).into(ivProfileImage);
 //            }
+
+            itemUser.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Post post = posts.get(position);
+                        String userId = post.getUser().getObjectId();
+//                        MainActivity.displayFragmentPostDetail(post);
+                    }
+                }
+            });
         }
     }
 

@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
+    Fragment fragment;
 
 
     @Override
@@ -54,7 +56,6 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment fragment;
                 switch (menuItem.getItemId()) {
                     case R.id.action_home:
                         fragment = new PostsFragment();
@@ -70,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
                 return true;
             }
+
+
         });
         // Set default fragment
         bottomNavigationView.setSelectedItemId(R.id.action_home);
@@ -78,6 +81,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar topToolbar = findViewById(R.id.topToolbar);
         setSupportActionBar(topToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+    }
+
+
+
+    protected void displayFragmentPostDetail(){
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        Fragment userFragment = new ProfileFragment();
+        ft.replace(R.id.flContainer, userFragment);
+        ft.commit();
     }
 
 }
