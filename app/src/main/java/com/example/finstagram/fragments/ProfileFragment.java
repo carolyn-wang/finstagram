@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.finstagram.Post;
+import com.example.finstagram.ProfileAdapter;
 import com.example.finstagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -38,6 +39,8 @@ public class ProfileFragment extends PostsFragment{
         rvPosts = view.findViewById(R.id.rvPosts);
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         rvPosts.setLayoutManager(gridLayoutManager);
+        adapter = new ProfileAdapter(mContext, allPosts);
+        rvPosts.setAdapter(adapter);
     }
 
     @Override

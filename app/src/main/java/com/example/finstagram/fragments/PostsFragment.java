@@ -55,7 +55,7 @@ public class PostsFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mContext = getContext();
+        mContext = getContext(); // MainActivity
         rvPosts = view.findViewById(R.id.rvPosts);
 
         allPosts = new ArrayList();

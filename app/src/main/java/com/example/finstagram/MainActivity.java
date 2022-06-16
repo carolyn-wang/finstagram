@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
-    Fragment fragment;
+    private Fragment fragment;
+    private View itemUser;
 
 
     @Override
@@ -82,12 +83,19 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(topToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+//
+//        itemUser = findViewById(R.id.itemUser);
+//        itemUser.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                displayFragmentPostDetail();
+//            }
+//        });
 
     }
 
 
-
-    protected void displayFragmentPostDetail(){
+    protected void displayFragmentPostDetail(Post post){
         FragmentTransaction ft = fragmentManager.beginTransaction();
         Fragment userFragment = new ProfileFragment();
         ft.replace(R.id.flContainer, userFragment);

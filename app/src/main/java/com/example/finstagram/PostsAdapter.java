@@ -1,6 +1,7 @@
 package com.example.finstagram;
 
 import android.content.Context;
+import android.opengl.Visibility;
 import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
-    private Context context;
+    protected Context context; // MainActivity
     private List<Post> posts;
     private static final String TAG = "PostsAdapter";
 
@@ -59,8 +60,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView tvUsername;
-        private ImageView ivProfileImage;
+        protected ImageView ivProfileImage;
+        protected TextView tvUsername;
         private ImageView ivImage;
         private TextView tvDescription;
         private View itemUser;
@@ -79,6 +80,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             // Bind the post data to the view elements
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
+
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
@@ -96,7 +98,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     if (position != RecyclerView.NO_POSITION) {
                         Post post = posts.get(position);
                         String userId = post.getUser().getObjectId();
-//                        MainActivity.displayFragmentPostDetail(post);
+                        ((MainActivity)context).displayFragmentPostDetail(post);
                     }
                 }
             });
