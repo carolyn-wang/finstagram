@@ -79,6 +79,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         protected TextView tvLikes;
         private ImageButton ibLike;
         private ImageButton ibComment;
+        private ParseUser currentUser;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -95,6 +96,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ibLike = itemView.findViewById(R.id.ibLike);
             tvLikes = itemView.findViewById(R.id.tvLikes);
             ibComment = itemView.findViewById(R.id.ibComment);
+            currentUser = ParseUser.getCurrentUser();
         }
 
         public void bind(Post post) {
@@ -104,7 +106,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvUsername2.setText(post.getUser().getUsername());
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             tvCreatedAt.setText(df.format(post.getCreatedAt()));
-            tvLikes.setText(String.valueOf(post.getLikes()));
+            tvLikes.setText(String.valueOf(post.getLikeCount()));
 
 //            Log.i("Created", String.valueOf(post.getCreatedAt()));
 //            tvCreatedAt.setText(post.getCreatedAt());
@@ -118,6 +120,18 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 //            if (profileImage != null) {
             Glide.with(context).load(profileImage.getUrl()).apply(RequestOptions.circleCropTransform()).into(ivProfileImage);
 //            }
+
+            // set correct heart icon dependent on if User has liked post
+            Drawable heart;
+            if (!post.isLiked(currentUser)) {
+                heart = context.getDrawable(R.drawable.ufi_heart);
+
+            } else {
+                heart = context.getDrawable(R.drawable.ufi_heart_active);
+
+            }
+            ibLike.setImageDrawable(heart);
+
 
             itemUser.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -134,23 +148,23 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ibLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (!post.isLiked) {
-                        post.likePost();
+                    if (!post.isLiked(currentUser)) {
+                        post.likePost(currentUser);
                         Drawable newHeart = context.getDrawable(R.drawable.ufi_heart_active);
                         ibLike.setImageDrawable(newHeart);
 //                        post.isLiked = true;
 //                        post.likes++
                         //TODO: might need to make boolean
-                        tvLikes.setText(String.valueOf(post.getLikes()));
-                        Log.i("Like", "favorited onSuccess");
+                        tvLikes.setText(String.valueOf(post.getLikeCount()));
+                        Log.i("Like",String.valueOf(post.getLikedUsers().size()));
 
                     } else { // else, if already favorited, unfavorite
-                        post.unlikePost();
+                        post.unlikePost(currentUser);
                         Drawable newHeart = context.getDrawable(R.drawable.ufi_heart);
                         ibLike.setImageDrawable(newHeart);
 //                        post.isLiked = false;
 //                        post.likeCount --;
-                        tvLikes.setText(String.valueOf(post.getLikes()));
+                        tvLikes.setText(String.valueOf(post.getLikeCount()));
                         Log.i("Unlike", "unfavorited onSuccess");
                     }
                 }
