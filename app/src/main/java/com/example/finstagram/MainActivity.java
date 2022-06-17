@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.finstagram.fragments.ComposeFragment;
+import com.example.finstagram.fragments.DetailFragment;
 import com.example.finstagram.fragments.PostsFragment;
 import com.example.finstagram.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void displayFragmentPostDetail(Post post){
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        Fragment postFragment = new ComposeFragment();
+        Fragment postFragment = new DetailFragment();
         ft.replace(R.id.flContainer, postFragment);
         ft.commit();
     }

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemPost"
     android:layout_width="match_parent"
@@ -19,25 +18,4 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <include layout="@layout/item_post_details"/>
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvUsername2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="8dp"-->
-<!--        tools:text="caption goes here" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvDescription"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="8dp"-->
-<!--        tools:text="caption goes here" />-->
-
-<!--    <TextView-->
-<!--        android:id="@+id/tvCreatedAt"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="8dp"-->
-<!--        tools:text="date created" />-->
 </LinearLayout>

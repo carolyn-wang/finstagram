@@ -38,7 +38,7 @@ public class ProfileAdapter extends PostsAdapter {
         @Override
         public void bind(Post post) {
             super.bind(post);
-            // TODO: set by getting device width
+            //TODO: move to utils
             int device_width = getScreenWidth();
             itemPost.setLayoutParams(new GridLayoutManager.LayoutParams(device_width/3,device_width/3));
             itemUser.setVisibility(View.GONE);
