@@ -50,6 +50,11 @@ public class Post extends ParseObject {
         put(KEY_LIKES, likes);
     }
 
+    public ParseObject getLikeUsers(){
+        return getParseObject(KEY_LIKE_USERS);
+    }
+
+
     public void likePost() {
         setLikes(getLikes() + 1);
         isLiked = true;

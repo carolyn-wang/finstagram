@@ -15,6 +15,7 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,6 +54,7 @@ public class ComposeFragment extends Fragment {
     private String photoFileName = "photo.jpg";
     private Button btnLogout;
     private Context mContext;
+    private ProgressBar pb;
 
     public ComposeFragment() {
         // Required empty public constructor
@@ -81,14 +83,14 @@ public class ComposeFragment extends Fragment {
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
         btnLogout = view.findViewById(R.id.btnLogout);
+        pb = (ProgressBar) view.findViewById(R.id.pbLoading);
 
-//        ProgressBar pb = (ProgressBar) view.findViewById(R.id.pbLoading);
 //        pb.setVisibility(ProgressBar.VISIBLE);
 
 
-        btnCaptureImage.setOnClickListener(new View.OnClickListener(){
+        btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 launchCamera();
             }
         });
@@ -97,22 +99,22 @@ public class ComposeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String description = etDescription.getText().toString();
-                if (description.isEmpty()){
+                if (description.isEmpty()) {
                     Toast.makeText(mContext, "Description cannot be empty", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (photoFile == null || ivPostImage.getDrawable() == null){
+                if (photoFile == null || ivPostImage.getDrawable() == null) {
                     Toast.makeText(mContext, "There is no image!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-//                // run a background job and once complete
-//                pb.setVisibility(ProgressBar.INVISIBLE);
+                pb.setVisibility(ProgressBar.VISIBLE);
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description, currentUser, photoFile);
+                pb.setVisibility(ProgressBar.INVISIBLE);
             }
         });
 
-        btnLogout.setOnClickListener(new View.OnClickListener(){
+        btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.i(TAG, "onClick logout button");
@@ -152,6 +154,7 @@ public class ComposeFragment extends Fragment {
      * Get image taken by user
      * Invoked when child application (camera) returns to parent application
      * Note: code copied from guide
+     *
      * @param requestCode
      * @param resultCode
      * @param data
@@ -179,7 +182,7 @@ public class ComposeFragment extends Fragment {
         File mediaStorageDir = new File(mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
 
         // Create the storage directory if it does not exist
-        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
+        if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
             Log.d(TAG, "failed to create directory");
         }
 
