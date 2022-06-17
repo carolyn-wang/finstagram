@@ -2,7 +2,6 @@ package com.example.finstagram;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     final FragmentManager fragmentManager = getSupportFragmentManager();
     private BottomNavigationView bottomNavigationView;
     private Fragment fragment;
-    private View itemUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         // Set default fragment
         bottomNavigationView.setSelectedItemId(R.id.action_home);
 
-//         Find the toolbar view and set as ActionBar
         Toolbar topToolbar = findViewById(R.id.topToolbar);
         setSupportActionBar(topToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

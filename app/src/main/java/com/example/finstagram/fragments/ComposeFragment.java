@@ -55,7 +55,6 @@ public class ComposeFragment extends Fragment {
     private ProgressBar pb;
 
     public ComposeFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -68,7 +67,6 @@ public class ComposeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_compose, container, false);
     }
 
@@ -83,16 +81,12 @@ public class ComposeFragment extends Fragment {
         btnLogout = view.findViewById(R.id.btnLogout);
         pb = (ProgressBar) view.findViewById(R.id.pbLoading);
 
-//        pb.setVisibility(ProgressBar.VISIBLE);
-
-
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchCamera();
             }
         });
-//        queryPosts();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,8 +111,6 @@ public class ComposeFragment extends Fragment {
             public void onClick(View v) {
                 Log.i(TAG, "onClick logout button");
                 ParseUser.logOut();
-                // TODO: currentUser??
-                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
                 goLoginActivity();
             }
         });
@@ -127,22 +119,13 @@ public class ComposeFragment extends Fragment {
 
 
     private void launchCamera() {
-        // create Intent to take a picture and return control to the calling application
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        // Create a File reference for future access
         photoFile = getPhotoFileUri(photoFileName);
 
-        // wrap File object into a content provider
-        // required for API >= 24
-        // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
         Uri fileProvider = FileProvider.getUriForFile(mContext, "com.codepath.fileprovider", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
-        Log.i(TAG, "launching camera");
 
-        // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
-        // So as long as the result is not null, it's safe to use the intent.
         if (intent.resolveActivity(mContext.getPackageManager()) != null) {
-            // Start the image capture intent to take photo
             Log.i(TAG, "start image capture intent");
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
@@ -162,24 +145,17 @@ public class ComposeFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
-                // by this point we have the camera photo on disk
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                // RESIZE BITMAP, see section below
-                // Load the taken image into a preview
                 ivPostImage.setImageBitmap(takenImage);
-            } else { // Result was a failure
+            } else {
                 Toast.makeText(mContext, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private File getPhotoFileUri(String photoFileName) {
-        // Get safe storage directory for photos
-        // Use `getExternalFilesDir` on Context to access package-specific directories.
-        // This way, we don't need to request external read/write runtime permissions.
         File mediaStorageDir = new File(mContext.getExternalFilesDir(Environment.DIRECTORY_PICTURES), TAG);
 
-        // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()) {
             Log.d(TAG, "failed to create directory");
         }

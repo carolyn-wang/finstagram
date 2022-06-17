@@ -49,7 +49,6 @@ public class PostsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_posts, container, false);
     }
 
@@ -67,10 +66,8 @@ public class PostsFragment extends Fragment {
 
         rvPosts.setLayoutManager(new LinearLayoutManager(mContext));
         queryPosts(scrollCounter);
-//        scrollCounter = scrollCounter + POSTS_TO_LOAD;
 
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
-        // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             /**
              * Refreshes feed
@@ -81,11 +78,7 @@ public class PostsFragment extends Fragment {
                 adapter.clear();
                 scrollCounter = 0;
                 queryPosts(scrollCounter);
-//                scrollCounter = scrollCounter + POSTS_TO_LOAD;
                 swipeContainer.setRefreshing(false);
-
-//                adapter = new PostsAdapter(mContext, allPosts);
-//                rvPosts.setAdapter(adapter);
             }
         });
         // Configure the refreshing colors
@@ -101,10 +94,7 @@ public class PostsFragment extends Fragment {
             scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
                 @Override
                 public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
-                    // Triggered only when new data needs to be appended to the list
-                    // Add whatever code is needed to append new items to the bottom of the list
                     queryPosts(scrollCounter);
-//                    scrollCounter = scrollCounter + POSTS_TO_LOAD;
                 }
             };
             // Adds the scroll listener to RecyclerView
@@ -112,40 +102,7 @@ public class PostsFragment extends Fragment {
 
     }
 
-//    // Append the next page of data into the adapter
-//    // This method probably sends out a network request and appends new data items to your adapter.
-//    public void loadNextDataFromApi(int offset) {
-//        ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-//        query.include(Post.KEY_USER);
-//        query.setLimit(POSTS_TO_LOAD);
-//        query.addDescendingOrder(Post.KEY_CREATED_AT);
-//        query.setSkip(offset);
-//
-//        query.findInBackground(new FindCallback<Post>() {
-//            @Override
-//            public void done(List<Post> posts, ParseException e) {
-//                // check for errors
-//                if (e != null) {
-//                    Log.e(TAG, "Issue with getting posts", e);
-//                    return;
-//                }
-//
-//                // for debugging purposes let's print every post description to logcat
-//                for (Post post : posts) {
-//                    Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
-//                }
-//
-//                // save received posts to list and notify adapter of new data
-//                allPosts.addAll(posts);
-//                adapter.notifyDataSetChanged();
-//            }
-//        });
-//
-//    }
-
-
     protected void queryPosts(int offset) {
-        // specify what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
         query.setLimit(POSTS_TO_LOAD);
@@ -155,18 +112,13 @@ public class PostsFragment extends Fragment {
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
-                // check for errors
                 if (e != null) {
                     Log.e(TAG, "Issue with getting posts", e);
                     return;
                 }
-
-                // for debugging purposes let's print every post description to logcat
                 for (Post post : posts) {
                     Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
-
-                // save received posts to list and notify adapter of new data
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();
             }
