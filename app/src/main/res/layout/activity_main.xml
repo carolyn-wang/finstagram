@@ -23,6 +23,11 @@
             app:layout_scrollFlags="scroll|enterAlways" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!--    TODO: top toolbar height-->
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
     <FrameLayout
         android:id="@+id/flContainer"
         android:layout_width="match_parent"
