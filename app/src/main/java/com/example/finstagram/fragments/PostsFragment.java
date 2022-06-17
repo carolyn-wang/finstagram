@@ -43,9 +43,7 @@ public class PostsFragment extends Fragment {
     private EndlessRecyclerViewScrollListener scrollListener;
     protected int scrollCounter;
 
-
     public PostsFragment(){
-
     }
 
     @Override
@@ -53,7 +51,6 @@ public class PostsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_posts, container, false);
-
     }
 
     @Override
@@ -70,6 +67,7 @@ public class PostsFragment extends Fragment {
 
         rvPosts.setLayoutManager(new LinearLayoutManager(mContext));
         queryPosts(scrollCounter);
+//        scrollCounter = scrollCounter + POSTS_TO_LOAD;
 
         swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
@@ -83,6 +81,7 @@ public class PostsFragment extends Fragment {
                 adapter.clear();
                 scrollCounter = 0;
                 queryPosts(scrollCounter);
+//                scrollCounter = scrollCounter + POSTS_TO_LOAD;
                 swipeContainer.setRefreshing(false);
 
 //                adapter = new PostsAdapter(mContext, allPosts);
@@ -105,7 +104,7 @@ public class PostsFragment extends Fragment {
                     // Triggered only when new data needs to be appended to the list
                     // Add whatever code is needed to append new items to the bottom of the list
                     queryPosts(scrollCounter);
-                    scrollCounter = scrollCounter + POSTS_TO_LOAD;
+//                    scrollCounter = scrollCounter + POSTS_TO_LOAD;
                 }
             };
             // Adds the scroll listener to RecyclerView
@@ -172,5 +171,7 @@ public class PostsFragment extends Fragment {
                 adapter.notifyDataSetChanged();
             }
         });
+        scrollCounter = scrollCounter + POSTS_TO_LOAD;
+
     }
 }

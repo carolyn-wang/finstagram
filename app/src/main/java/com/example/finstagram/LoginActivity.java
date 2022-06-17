@@ -61,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
          });
     }
 
+    // TODO: redundant from splashActivity
+
     private void goMainActivity() {
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
