@@ -15,7 +15,6 @@ import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
 import android.os.Environment;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,7 +26,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.finstagram.FeedActivity;
 import com.example.finstagram.LoginActivity;
 import com.example.finstagram.Post;
 import com.example.finstagram.R;
@@ -213,13 +211,6 @@ public class ComposeFragment extends Fragment {
     private void goLoginActivity() {
         Intent i = new Intent(mContext, LoginActivity.class);
         startActivity(i);
-//        finish();
-    }
-
-    private void goFeedActivity() {
-        Intent i = new Intent(mContext, FeedActivity.class);
-        startActivity(i);
-        Log.i(TAG, "going to Feed");
 //        finish();
     }
 

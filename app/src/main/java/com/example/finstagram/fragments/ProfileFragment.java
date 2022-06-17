@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,15 +30,15 @@ import com.parse.ParseUser;
 
 import java.util.List;
 
-public class ProfileFragment extends PostsFragment{
+public class ProfileFragment extends PostsFragment {
     private static final String TAG = "PostsFragment";
     private RecyclerView rvPosts;
     private Context mContext;
 
     public static ProfileFragment newInstance(ParseUser user) {
-        
+
         Bundle args = new Bundle();
-        
+
         ProfileFragment fragment = new ProfileFragment();
         args.putParcelable("user", user);
         fragment.setArguments(args);
@@ -59,6 +60,14 @@ public class ProfileFragment extends PostsFragment{
         rvPosts = view.findViewById(R.id.rvPosts);
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         rvPosts.setLayoutManager(gridLayoutManager);
+
+        RecyclerView.ItemDecoration vGridDividers = new
+                DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL);
+        RecyclerView.ItemDecoration hGridDividers = new
+                DividerItemDecoration(mContext, DividerItemDecoration.HORIZONTAL);
+        rvPosts.addItemDecoration(vGridDividers);
+        rvPosts.addItemDecoration(hGridDividers);
+
         adapter = new ProfileAdapter(mContext, allPosts);
         rvPosts.setAdapter(adapter);
     }
