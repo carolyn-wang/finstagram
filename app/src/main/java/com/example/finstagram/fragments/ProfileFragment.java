@@ -34,6 +34,7 @@ public class ProfileFragment extends PostsFragment {
     private static final String TAG = "PostsFragment";
     private RecyclerView rvPosts;
     private Context mContext;
+    private static final int POSTS_TO_LOAD = 20;
 
     public static ProfileFragment newInstance(ParseUser user) {
 
@@ -48,9 +49,7 @@ public class ProfileFragment extends PostsFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_profile, container, false);
-
     }
 
     @Override
@@ -66,29 +65,23 @@ public class ProfileFragment extends PostsFragment {
     }
 
     @Override
-    protected void queryPosts() {
+    protected void queryPosts(int offset) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
         ParseUser user = (ParseUser) getArguments().getParcelable("user");
         query.whereEqualTo(Post.KEY_USER, user);
-        query.setLimit(20);
+        query.setLimit(POSTS_TO_LOAD);
         query.addDescendingOrder(Post.KEY_CREATED_AT);
-        // start an asynchronous call for posts
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
-                // check for errors
                 if (e != null) {
                     Log.e(TAG, "Issue with getting posts", e);
                     return;
                 }
-
-                // for debugging purposes let's print every post description to logcat
                 for (Post post : posts) {
                     Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
-
-                // save received posts to list and notify adapter of new data
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();
             }
