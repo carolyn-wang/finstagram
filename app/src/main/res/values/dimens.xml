@@ -3,4 +3,5 @@
     <dimen name="feed_pfp_diameter">40dp</dimen>
     <dimen name="feed_pfp_margin">10dp</dimen>
     <dimen name="feed_post_height">350dp</dimen>
+    <dimen name="caption_margin">10dp</dimen>
 </resources>

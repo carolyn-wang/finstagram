@@ -1,12 +1,14 @@
 package com.example.finstagram;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.opengl.Visibility;
 import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +26,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import okhttp3.Headers;
+
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
     protected Context context; // MainActivity
@@ -38,6 +42,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     /**
      * Passes LayoutInflater a “blueprint” of the view (reference to XML layout file)
      * Wraps view in a ViewHolder for easy access
+     *
      * @param parent
      * @param viewType
      * @return
@@ -71,6 +76,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         protected View itemUser;
         protected View itemPost;
         protected View itemPostDetails;
+        private ImageButton ibLike;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -84,6 +90,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             itemUser = itemView.findViewById(R.id.itemUser);
             itemPost = itemView.findViewById(R.id.itemPost);
             itemPostDetails = itemView.findViewById(R.id.itemPostDetails);
+            ibLike = itemView.findViewById(R.id.ibLike);
         }
 
         public void bind(Post post) {
@@ -104,7 +111,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
             ParseFile profileImage = post.getUser().getParseFile("profileImage");
 //            if (profileImage != null) {
-                Glide.with(context).load(profileImage.getUrl()).apply(RequestOptions.circleCropTransform()).into(ivProfileImage);
+            Glide.with(context).load(profileImage.getUrl()).apply(RequestOptions.circleCropTransform()).into(ivProfileImage);
 //            }
 
             itemUser.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +121,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     if (position != RecyclerView.NO_POSITION) {
                         Post post = posts.get(position);
                         ParseUser postUser = post.getUser();
-                        ((MainActivity)context).displayFragmentUserDetail(postUser);
+                        ((MainActivity) context).displayFragmentUserDetail(postUser);
                     }
                 }
             });
@@ -129,19 +136,43 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 //                    }
 //                }
 //            });
+
+//            ibLike.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if (!post.isLiked()) {
+//                        post.likePost();
+//                        Drawable newHeart = context.getDrawable(R.drawable.ufi_heart_active);
+//                        ibLike.setImageDrawable(newHeart);
+//                        post.isLiked = true;
+//                        post.likeCount++;
+//                        tvLikeCount.setText(String.valueOf(post.likeCount));
+//                        Log.i("FavoriteTweet", "favorited onSuccess");
+//
+//                    } else { // else, if already favorited, unfavorite
+//                        post.unlikePost();
+//                        Drawable newHeart = context.getDrawable(R.drawable.ufi_heart);
+//                        ibLike.setImageDrawable(newHeart);
+//                        post.isLiked = false;
+//                        post.likeCount --;
+//                        tvLikeCount.setText(String.valueOf(post.likeCount));
+//                        Log.i("UnfavoriteTweet", "unfavorited onSuccess");
+//                    }
+//                }
+//        });
         }
     }
 
-    // Clean all elements of the recycler
-    public void clear() {
-        posts.clear();
-        notifyDataSetChanged();
-    }
+        // Clean all elements of the recycler
+        public void clear() {
+            posts.clear();
+            notifyDataSetChanged();
+        }
 
-    // Add a list of items -- change to type used
-    public void addAll(List<Post> list) {
-        posts.addAll(list);
-        notifyDataSetChanged();
-    }
+        // Add a list of items -- change to type used
+        public void addAll(List<Post> list) {
+            posts.addAll(list);
+            notifyDataSetChanged();
+        }
 
-}
+    }

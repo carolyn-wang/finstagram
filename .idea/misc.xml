@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.18825378417968752" />
         <entry key="app/src/main/res/layout/item_comments.xml" value="0.17119565217391305" />
         <entry key="app/src/main/res/layout/item_post.xml" value="0.17119565217391305" />
+        <entry key="app/src/main/res/layout/item_post_details.xml" value="0.5713973999023438" />
         <entry key="app/src/main/res/layout/item_post_profile.xml" value="0.17119565217391305" />
         <entry key="app/src/main/res/layout/item_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_user.xml" value="0.10677083333333333" />
