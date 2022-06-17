@@ -31,7 +31,7 @@ import okhttp3.Headers;
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
 
     protected Context context; // MainActivity
-    private List<Post> posts;
+    protected List<Post> posts;
     private static final String TAG = "PostsAdapter";
 
     public PostsAdapter(Context context, List<Post> posts) {
@@ -169,17 +169,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     }
                 }
             });
-
-//            itemPost.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int position = getAdapterPosition();
-//                    if (position != RecyclerView.NO_POSITION) {
-//                        Post post = posts.get(position);
-//                        ((MainActivity) context).displayFragmentPostDetail(post);
-//                    }
-//                }
-//            });
 
             ibComment.setOnClickListener(new View.OnClickListener() {
                 @Override

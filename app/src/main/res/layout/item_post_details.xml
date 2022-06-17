@@ -39,6 +39,7 @@
         android:id="@+id/tvLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/feed_icon_margin"
         android:text="0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ibLike" />
@@ -47,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginVertical="@dimen/feed_icon_margin"
         android:text="likes"
         app:layout_constraintLeft_toRightOf="@+id/tvLikes"
         app:layout_constraintTop_toBottomOf="@+id/ibLike" />

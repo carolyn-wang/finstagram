@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -35,6 +36,18 @@ public class ProfileAdapter extends PostsAdapter {
             itemPost.setLayoutParams(new GridLayoutManager.LayoutParams(360,360));
             itemUser.setVisibility(View.GONE);
             itemPostDetails.setVisibility(View.GONE);
+
+
+            ivImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Post post = posts.get(position);
+                        ((MainActivity) context).displayFragmentPostDetail(post);
+                    }
+                }
+            });
         }
     }
 }
