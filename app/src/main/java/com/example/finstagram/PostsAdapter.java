@@ -108,18 +108,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvCreatedAt.setText(df.format(post.getCreatedAt()));
             tvLikes.setText(String.valueOf(post.getLikeCount()));
 
-//            Log.i("Created", String.valueOf(post.getCreatedAt()));
-//            tvCreatedAt.setText(post.getCreatedAt());
-
             ParseFile image = post.getImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
 
             ParseFile profileImage = post.getUser().getParseFile("profileImage");
-//            if (profileImage != null) {
             Glide.with(context).load(profileImage.getUrl()).apply(RequestOptions.circleCropTransform()).into(ivProfileImage);
-//            }
 
             // set correct heart icon dependent on if User has liked post
             Drawable heart;
@@ -152,8 +147,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         post.likePost(currentUser);
                         Drawable newHeart = context.getDrawable(R.drawable.ufi_heart_active);
                         ibLike.setImageDrawable(newHeart);
-//                        post.isLiked = true;
-//                        post.likes++
                         //TODO: might need to make boolean
                         tvLikes.setText(String.valueOf(post.getLikeCount()));
                         Log.i("Like",String.valueOf(post.getLikedUsers().size()));
@@ -162,8 +155,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         post.unlikePost(currentUser);
                         Drawable newHeart = context.getDrawable(R.drawable.ufi_heart);
                         ibLike.setImageDrawable(newHeart);
-//                        post.isLiked = false;
-//                        post.likeCount --;
                         tvLikes.setText(String.valueOf(post.getLikeCount()));
                         Log.i("Unlike", "unfavorited onSuccess");
                     }
