@@ -22,23 +22,11 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (ParseUser.getCurrentUser() != null) {
-                    goMainActivity();
+                    Utils.goMainActivity(this);
                 } else {
-                    goLoginActivity();
+                    Utils.goLoginActivity(this);
                 }
             }
         }, 2000);
-    }
-
-    private void goMainActivity() {
-        Intent i = new Intent(this, MainActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-    private void goLoginActivity() {
-        Intent i = new Intent(this, LoginActivity.class);
-        startActivity(i);
-        finish();
     }
 }

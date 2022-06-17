@@ -30,6 +30,7 @@ public class ProfileAdapter extends PostsAdapter {
             super(itemView);
         }
 
+        //TODO: move to utils?
         public int getScreenWidth() {
             return Resources.getSystem().getDisplayMetrics().widthPixels;
         }

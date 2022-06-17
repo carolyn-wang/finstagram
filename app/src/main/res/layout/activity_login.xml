@@ -15,7 +15,6 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-<!--        TODO: swap out 40dp-->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/nav_logo_height"

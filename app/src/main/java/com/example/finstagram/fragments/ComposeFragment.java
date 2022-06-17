@@ -44,24 +44,17 @@ import java.io.File;
 public class ComposeFragment extends Fragment {
     private static final String TAG = "ComposeFragment";
     private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
+    private static final String photoFileName = "photo.jpg";
     private EditText etDescription;
     private Button btnCaptureImage;
     private ImageView ivPostImage;
     private Button btnSubmit;
     private File photoFile;
-    private String photoFileName = "photo.jpg";
     private Button btnLogout;
     private Context mContext;
     private ProgressBar pb;
 
     public ComposeFragment() {
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
     }
 
     @Override
@@ -79,7 +72,7 @@ public class ComposeFragment extends Fragment {
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
         btnLogout = view.findViewById(R.id.btnLogout);
-        pb = (ProgressBar) view.findViewById(R.id.pbLoading);
+        pb = view.findViewById(R.id.pbLoading);
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
