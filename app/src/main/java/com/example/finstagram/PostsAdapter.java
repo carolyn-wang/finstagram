@@ -68,6 +68,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private TextView tvDescription;
         private TextView tvCreatedAt;
         private View itemUser;
+        private View itemPost;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -78,6 +79,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
             itemUser = itemView.findViewById(R.id.itemUser);
+            itemPost = itemView.findViewById(R.id.itemPost);
         }
 
         public void bind(Post post) {
@@ -107,6 +109,17 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     if (position != RecyclerView.NO_POSITION) {
                         Post post = posts.get(position);
                         String userId = post.getUser().getObjectId();
+                        ((MainActivity)context).displayFragmentUserDetail(userId);
+                    }
+                }
+            });
+
+            itemPost.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Post post = posts.get(position);
                         ((MainActivity)context).displayFragmentPostDetail(post);
                     }
                 }

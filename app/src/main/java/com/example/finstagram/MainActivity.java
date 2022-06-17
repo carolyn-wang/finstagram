@@ -95,10 +95,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    protected void displayFragmentPostDetail(Post post){
+    protected void displayFragmentUserDetail(String userId){
         FragmentTransaction ft = fragmentManager.beginTransaction();
         Fragment userFragment = new ProfileFragment();
         ft.replace(R.id.flContainer, userFragment);
+        ft.commit();
+    }
+
+    protected void displayFragmentPostDetail(Post post){
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        Fragment postFragment = new ProfileFragment();
+        ft.replace(R.id.flContainer, postFragment);
         ft.commit();
     }
 
