@@ -5,6 +5,7 @@ import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 @ParseClassName("Post")
@@ -14,6 +15,7 @@ public class Post extends ParseObject {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
     public static final String KEY_LIKES = "likes";
+    public static final String KEY_LIKE_USERS = "likeUsers";
     public boolean isLiked = false;
 
     public String getDescription() {
@@ -51,11 +53,14 @@ public class Post extends ParseObject {
     public void likePost() {
         setLikes(getLikes() + 1);
         isLiked = true;
+
+        saveInBackground();
     }
 
     public void unlikePost() {
         setLikes(getLikes() - 1);
         isLiked = false;
+        saveInBackground();
     }
 
 //    public boolean isLiked() {

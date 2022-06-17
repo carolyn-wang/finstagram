@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void displayFragmentPostDetail(Post post){
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        Fragment postFragment = new ProfileFragment();
+        Fragment postFragment = new ComposeFragment();
         ft.replace(R.id.flContainer, postFragment);
         ft.commit();
     }

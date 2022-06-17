@@ -78,6 +78,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         protected View itemPostDetails;
         protected TextView tvLikes;
         private ImageButton ibLike;
+        private ImageButton ibComment;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -93,6 +94,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             itemPostDetails = itemView.findViewById(R.id.itemPostDetails);
             ibLike = itemView.findViewById(R.id.ibLike);
             tvLikes = itemView.findViewById(R.id.tvLikes);
+            ibComment = itemView.findViewById(R.id.ibComment);
         }
 
         public void bind(Post post) {
@@ -129,17 +131,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                 }
             });
 
-//            itemPost.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    int position = getAdapterPosition();
-//                    if (position != RecyclerView.NO_POSITION) {
-//                        Post post = posts.get(position);
-//                        ((MainActivity)context).displayFragmentPostDetail(post);
-//                    }
-//                }
-//            });
-
             ibLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -163,20 +154,43 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         Log.i("Unlike", "unfavorited onSuccess");
                     }
                 }
-        });
+            });
+
+//            itemPost.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int position = getAdapterPosition();
+//                    if (position != RecyclerView.NO_POSITION) {
+//                        Post post = posts.get(position);
+//                        ((MainActivity) context).displayFragmentPostDetail(post);
+//                    }
+//                }
+//            });
+
+            ibComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Post post = posts.get(position);
+                        ((MainActivity) context).displayFragmentPostDetail(post);
+                    }
+                }
+            });
+
         }
     }
 
-        // Clean all elements of the recycler
-        public void clear() {
-            posts.clear();
-            notifyDataSetChanged();
-        }
-
-        // Add a list of items -- change to type used
-        public void addAll(List<Post> list) {
-            posts.addAll(list);
-            notifyDataSetChanged();
-        }
-
+    // Clean all elements of the recycler
+    public void clear() {
+        posts.clear();
+        notifyDataSetChanged();
     }
+
+    // Add a list of items -- change to type used
+    public void addAll(List<Post> list) {
+        posts.addAll(list);
+        notifyDataSetChanged();
+    }
+
+}

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemPostDetails"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    android:layout_height="wrap_content">
 
     <ImageButton
         android:id="@+id/ibLike"
@@ -21,33 +20,47 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ufi_heart" />
 
+    <ImageButton
+        android:id="@+id/ibComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="commentButton"
+        android:contextClickable="false"
+        android:cropToPadding="false"
+        app:layout_constraintLeft_toRightOf="@+id/ibLike"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ufi_comment" />
+
     <TextView
         android:id="@+id/tvLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
-        app:layout_constraintTop_toBottomOf="@+id/ibLike"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ibLike" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/ibLike"
-        app:layout_constraintLeft_toRightOf="@+id/tvLikes"
         android:layout_marginStart="2dp"
         android:layout_marginBottom="8dp"
-        android:text="likes" />
+        android:text="likes"
+        app:layout_constraintLeft_toRightOf="@+id/tvLikes"
+        app:layout_constraintTop_toBottomOf="@+id/ibLike" />
 
 
     <TextView
         android:id="@+id/tvUsername2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvLikes"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="8dp"
+        android:text="username"
         android:textStyle="bold"
-        android:text="username" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLikes" />
 
     <TextView
         android:id="@+id/tvDescription"
@@ -62,9 +75,9 @@
         android:id="@+id/tvCreatedAt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tvUsername2"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="8dp"
-        android:text="date created" />
+        android:text="date created"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsername2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
