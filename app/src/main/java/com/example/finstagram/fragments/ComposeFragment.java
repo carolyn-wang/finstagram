@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.finstagram.FeedActivity;
@@ -81,6 +82,10 @@ public class ComposeFragment extends Fragment {
         btnSubmit = view.findViewById(R.id.btnSubmit);
         btnLogout = view.findViewById(R.id.btnLogout);
 
+//        ProgressBar pb = (ProgressBar) view.findViewById(R.id.pbLoading);
+//        pb.setVisibility(ProgressBar.VISIBLE);
+
+
         btnCaptureImage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -100,6 +105,8 @@ public class ComposeFragment extends Fragment {
                     Toast.makeText(mContext, "There is no image!", Toast.LENGTH_SHORT).show();
                     return;
                 }
+//                // run a background job and once complete
+//                pb.setVisibility(ProgressBar.INVISIBLE);
                 ParseUser currentUser = ParseUser.getCurrentUser();
                 savePost(description, currentUser, photoFile);
             }

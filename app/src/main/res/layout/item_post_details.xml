@@ -8,10 +8,11 @@
 
     <ImageButton
         android:id="@+id/ibLike"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="@dimen/feed_icon_size"
+        android:layout_height="@dimen/feed_icon_size"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="@dimen/feed_icon_margin"
+        android:layout_marginTop="@dimen/feed_icon_margin"
         android:background="@android:color/transparent"
         android:contentDescription="likeButton"
         android:contextClickable="false"
@@ -22,10 +23,11 @@
 
     <ImageButton
         android:id="@+id/ibComment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="@dimen/feed_icon_size"
+        android:layout_height="@dimen/feed_icon_size"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="@dimen/feed_icon_margin"
+        android:layout_marginTop="@dimen/feed_icon_margin"
         android:background="@android:color/transparent"
         android:contentDescription="commentButton"
         android:contextClickable="false"
