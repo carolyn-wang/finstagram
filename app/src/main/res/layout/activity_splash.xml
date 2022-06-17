@@ -9,18 +9,29 @@
 
     <ImageView
         android:id="@+id/logo_id"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
+        android:layout_width="@dimen/splash_icon_size"
+        android:layout_height="@dimen/splash_icon_size"
         android:layout_centerInParent="true"
-        android:src="@drawable/nav_logo_whiteout"/>
+        android:src="@drawable/rainbow_icon"/>
 
     <TextView
+        android:id="@+id/tvFrom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/logo_id"
         android:layout_centerHorizontal="true"
-        android:text="Splash Screen"
-        android:textSize="30dp"
-        android:textColor="@color/colorPrimary"/>
+        android:layout_marginTop="140dp"
+        android:text="From"
+        android:textSize="20dp"
+        android:textColor="@color/grey"/>
+
+    <ImageView
+        android:id="@+id/meta_id"
+        android:layout_width="150dp"
+        android:layout_marginTop="-30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFrom"
+        android:layout_centerInParent="true"
+        android:src="@drawable/rainbow_meta"/>
 
 </RelativeLayout>

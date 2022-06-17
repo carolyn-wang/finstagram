@@ -11,6 +11,7 @@ import com.parse.ParseUser;
 public class SplashActivity extends AppCompatActivity {
 
     Handler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,16 +21,13 @@ public class SplashActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (ParseUser.getCurrentUser() != null){
+                if (ParseUser.getCurrentUser() != null) {
                     goMainActivity();
-                }
-                else{
+                } else {
                     goLoginActivity();
                 }
             }
-        },2000);
-
-
+        }, 2000);
     }
 
     private void goMainActivity() {
