@@ -64,11 +64,13 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 
         protected ImageView ivProfileImage;
         protected TextView tvUsername;
-        private ImageView ivImage;
-        private TextView tvDescription;
-        private TextView tvCreatedAt;
-        private View itemUser;
-        private View itemPost;
+        protected ImageView ivImage;
+        protected TextView tvUsername2;
+        protected TextView tvDescription;
+        protected TextView tvCreatedAt;
+        protected View itemUser;
+        protected View itemPost;
+        protected View itemPostDetails;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -76,16 +78,19 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             ivImage = itemView.findViewById(R.id.ivImage);
+            tvUsername2 = itemView.findViewById(R.id.tvUsername2);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
             itemUser = itemView.findViewById(R.id.itemUser);
             itemPost = itemView.findViewById(R.id.itemPost);
+            itemPostDetails = itemView.findViewById(R.id.itemPostDetails);
         }
 
         public void bind(Post post) {
             // Bind the post data to the view elements
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
+            tvUsername2.setText(post.getUser().getUsername());
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             tvCreatedAt.setText(df.format(post.getCreatedAt()));
 

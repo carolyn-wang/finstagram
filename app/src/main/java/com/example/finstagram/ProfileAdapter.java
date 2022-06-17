@@ -30,9 +30,8 @@ public class ProfileAdapter extends PostsAdapter {
         @Override
         public void bind(Post post) {
             super.bind(post);
-
-            ivProfileImage.setVisibility(View.GONE);
-            tvUsername.setVisibility(View.GONE);
+            itemUser.setVisibility(View.GONE);
+            itemPostDetails.setVisibility(View.GONE);
         }
     }
 }

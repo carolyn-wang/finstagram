@@ -8,7 +8,9 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +45,14 @@ public class ProfileFragment extends PostsFragment{
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_profile, container, false);
+
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mContext = getContext();
@@ -59,7 +69,6 @@ public class ProfileFragment extends PostsFragment{
         query.include(Post.KEY_USER);
         ParseUser user = (ParseUser) getArguments().getParcelable("user");
         query.whereEqualTo(Post.KEY_USER, user);
-//        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
         query.setLimit(20);
         query.addDescendingOrder(Post.KEY_CREATED_AT);
         // start an asynchronous call for posts
