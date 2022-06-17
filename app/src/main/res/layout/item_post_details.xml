@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/ufi_heart" />
 
     <TextView
-        android:id="@+id/tvLikeCount"
+        android:id="@+id/tvLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="0"
@@ -30,11 +30,10 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <TextView
-        android:id="@+id/tvLikes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/ibLike"
-        app:layout_constraintLeft_toRightOf="@+id/tvLikeCount"
+        app:layout_constraintLeft_toRightOf="@+id/tvLikes"
         android:layout_marginStart="2dp"
         android:layout_marginBottom="8dp"
         android:text="likes" />

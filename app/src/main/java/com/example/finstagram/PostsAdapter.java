@@ -76,6 +76,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         protected View itemUser;
         protected View itemPost;
         protected View itemPostDetails;
+        protected TextView tvLikes;
         private ImageButton ibLike;
 
 
@@ -91,6 +92,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             itemPost = itemView.findViewById(R.id.itemPost);
             itemPostDetails = itemView.findViewById(R.id.itemPostDetails);
             ibLike = itemView.findViewById(R.id.ibLike);
+            tvLikes = itemView.findViewById(R.id.tvLikes);
         }
 
         public void bind(Post post) {
@@ -100,6 +102,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvUsername2.setText(post.getUser().getUsername());
             DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
             tvCreatedAt.setText(df.format(post.getCreatedAt()));
+            tvLikes.setText(String.valueOf(post.getLikes()));
 
 //            Log.i("Created", String.valueOf(post.getCreatedAt()));
 //            tvCreatedAt.setText(post.getCreatedAt());
