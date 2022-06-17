@@ -1,6 +1,7 @@
 package com.example.finstagram;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +30,17 @@ public class ProfileAdapter extends PostsAdapter {
             super(itemView);
         }
 
+        public int getScreenWidth() {
+            return Resources.getSystem().getDisplayMetrics().widthPixels;
+        }
+
+
         @Override
         public void bind(Post post) {
             super.bind(post);
             // TODO: set by getting device width
-            itemPost.setLayoutParams(new GridLayoutManager.LayoutParams(360,360));
+            int device_width = getScreenWidth();
+            itemPost.setLayoutParams(new GridLayoutManager.LayoutParams(device_width/3,device_width/3));
             itemUser.setVisibility(View.GONE);
             itemPostDetails.setVisibility(View.GONE);
 

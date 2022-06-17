@@ -147,7 +147,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         post.likePost(currentUser);
                         Drawable newHeart = context.getDrawable(R.drawable.ufi_heart_active);
                         ibLike.setImageDrawable(newHeart);
-                        //TODO: might need to make boolean
                         tvLikes.setText(String.valueOf(post.getLikeCount()));
                         Log.i("Like",String.valueOf(post.getLikedUsers().size()));
 
