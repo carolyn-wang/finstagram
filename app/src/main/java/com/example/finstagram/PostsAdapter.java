@@ -20,6 +20,8 @@ import com.example.finstagram.fragments.PostsFragment;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> {
@@ -64,6 +66,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         protected TextView tvUsername;
         private ImageView ivImage;
         private TextView tvDescription;
+        private TextView tvCreatedAt;
         private View itemUser;
 
 
@@ -73,6 +76,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
             itemUser = itemView.findViewById(R.id.itemUser);
         }
 
@@ -80,6 +84,11 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             // Bind the post data to the view elements
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
+            DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+            tvCreatedAt.setText(df.format(post.getCreatedAt()));
+
+//            Log.i("Created", String.valueOf(post.getCreatedAt()));
+//            tvCreatedAt.setText(post.getCreatedAt());
 
             ParseFile image = post.getImage();
             if (image != null) {

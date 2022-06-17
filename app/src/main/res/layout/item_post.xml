@@ -11,14 +11,6 @@
 
     <include layout="@layout/item_user"/>
 
-<!--    <TextView-->
-<!--        android:id="@+id/tvUsername"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="TextView"-->
-<!--        android:textAppearance="@style/TextAppearance.AppCompat.Large"-->
-<!--        tools:text="username" />-->
-
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
@@ -32,4 +24,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         tools:text="caption goes here" />
+
+    <TextView
+        android:id="@+id/tvCreatedAt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        tools:text="date created" />
 </LinearLayout>
