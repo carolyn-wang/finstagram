@@ -108,22 +108,22 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
                         Post post = posts.get(position);
-                        String userId = post.getUser().getObjectId();
-                        ((MainActivity)context).displayFragmentUserDetail(userId);
+                        ParseUser postUser = post.getUser();
+                        ((MainActivity)context).displayFragmentUserDetail(postUser);
                     }
                 }
             });
 
-            itemPost.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        Post post = posts.get(position);
-                        ((MainActivity)context).displayFragmentPostDetail(post);
-                    }
-                }
-            });
+//            itemPost.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    int position = getAdapterPosition();
+//                    if (position != RecyclerView.NO_POSITION) {
+//                        Post post = posts.get(position);
+//                        ((MainActivity)context).displayFragmentPostDetail(post);
+//                    }
+//                }
+//            });
         }
     }
 

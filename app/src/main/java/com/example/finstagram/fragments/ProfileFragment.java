@@ -32,6 +32,16 @@ public class ProfileFragment extends PostsFragment{
     private RecyclerView rvPosts;
     private Context mContext;
 
+    public static ProfileFragment newInstance(ParseUser user) {
+        
+        Bundle args = new Bundle();
+        
+        ProfileFragment fragment = new ProfileFragment();
+        args.putParcelable("user", user);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -47,7 +57,9 @@ public class ProfileFragment extends PostsFragment{
     protected void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
-        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        ParseUser user = (ParseUser) getArguments().getParcelable("user");
+        query.whereEqualTo(Post.KEY_USER, user);
+//        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
         query.setLimit(20);
         query.addDescendingOrder(Post.KEY_CREATED_AT);
         // start an asynchronous call for posts

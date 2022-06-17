@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ComposeFragment();
                         break;
                     case R.id.action_profile:
-                        fragment = new ProfileFragment();
+                        fragment = new ProfileFragment().newInstance(ParseUser.getCurrentUser());
                         break;
                     default: return true;
                 }
@@ -95,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    protected void displayFragmentUserDetail(String userId){
+    protected void displayFragmentUserDetail(ParseUser user){
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        Fragment userFragment = new ProfileFragment();
+        Fragment userFragment = new ProfileFragment().newInstance(user);
         ft.replace(R.id.flContainer, userFragment);
         ft.commit();
     }
