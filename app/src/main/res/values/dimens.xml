@@ -9,4 +9,6 @@
     <dimen name="nav_logo_height">80dp</dimen>
     <dimen name="nav_logo_margin">40dp</dimen>
     <dimen name="feed_user_margin">8dp</dimen>
+    <dimen name="feed_image_margin">1dp</dimen>
+    <dimen name="feed_detail_margin">10dp</dimen>
 </resources>

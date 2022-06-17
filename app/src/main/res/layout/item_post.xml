@@ -5,6 +5,7 @@
     android:id="@+id/itemPost"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="40dp"
     android:orientation="vertical">
 
     <include layout="@layout/item_user"/>
@@ -13,6 +14,7 @@
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/feed_post_height"
+        android:layout_margin="@dimen/feed_image_margin"
         android:scaleType="centerCrop"
         tools:srcCompat="@tools:sample/avatars" />
 

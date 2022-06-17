@@ -61,13 +61,6 @@ public class ProfileFragment extends PostsFragment {
         StaggeredGridLayoutManager gridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
         rvPosts.setLayoutManager(gridLayoutManager);
 
-        RecyclerView.ItemDecoration vGridDividers = new
-                DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL);
-        RecyclerView.ItemDecoration hGridDividers = new
-                DividerItemDecoration(mContext, DividerItemDecoration.HORIZONTAL);
-        rvPosts.addItemDecoration(vGridDividers);
-        rvPosts.addItemDecoration(hGridDividers);
-
         adapter = new ProfileAdapter(mContext, allPosts);
         rvPosts.setAdapter(adapter);
     }

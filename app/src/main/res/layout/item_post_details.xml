@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/itemPostDetails"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/feed_detail_margin">
 
     <ImageButton
         android:id="@+id/ibLike"
         android:layout_width="@dimen/feed_icon_size"
         android:layout_height="@dimen/feed_icon_size"
-        android:scaleType="fitCenter"
-        android:layout_marginLeft="@dimen/feed_icon_margin"
-        android:layout_marginTop="@dimen/feed_icon_margin"
+        android:layout_marginVertical="@dimen/feed_icon_margin"
         android:background="@android:color/transparent"
         android:contentDescription="likeButton"
         android:contextClickable="false"
         android:cropToPadding="false"
+        android:scaleType="fitCenter"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ufi_heart" />
@@ -25,13 +24,13 @@
         android:id="@+id/ibComment"
         android:layout_width="@dimen/feed_icon_size"
         android:layout_height="@dimen/feed_icon_size"
-        android:scaleType="fitCenter"
         android:layout_marginLeft="@dimen/feed_icon_margin"
-        android:layout_marginTop="@dimen/feed_icon_margin"
+        android:layout_marginVertical="@dimen/feed_icon_margin"
         android:background="@android:color/transparent"
         android:contentDescription="commentButton"
         android:contextClickable="false"
         android:cropToPadding="false"
+        android:scaleType="fitCenter"
         app:layout_constraintLeft_toRightOf="@+id/ibLike"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ufi_comment" />

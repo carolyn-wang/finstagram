@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class ProfileAdapter extends PostsAdapter {
         @Override
         public void bind(Post post) {
             super.bind(post);
+            // TODO: set by getting device width
+            itemPost.setLayoutParams(new GridLayoutManager.LayoutParams(360,360));
             itemUser.setVisibility(View.GONE);
             itemPostDetails.setVisibility(View.GONE);
         }
