@@ -14,6 +14,7 @@ public class Post extends ParseObject {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_USER = "user";
     public static final String KEY_LIKES = "likes";
+    public boolean isLiked = false;
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
@@ -49,6 +50,19 @@ public class Post extends ParseObject {
 
     public void likePost() {
         setLikes(getLikes() + 1);
+        isLiked = true;
     }
+
+    public void unlikePost() {
+        setLikes(getLikes() - 1);
+        isLiked = false;
+    }
+
+//    public boolean isLiked() {
+//        if (getLikes() > 0){
+//            return true;
+//        }
+//        return false;
+//    }
 
 }

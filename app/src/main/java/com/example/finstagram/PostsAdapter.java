@@ -140,29 +140,30 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
 //                }
 //            });
 
-//            ibLike.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    if (!post.isLiked()) {
-//                        post.likePost();
-//                        Drawable newHeart = context.getDrawable(R.drawable.ufi_heart_active);
-//                        ibLike.setImageDrawable(newHeart);
+            ibLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (!post.isLiked) {
+                        post.likePost();
+                        Drawable newHeart = context.getDrawable(R.drawable.ufi_heart_active);
+                        ibLike.setImageDrawable(newHeart);
 //                        post.isLiked = true;
-//                        post.likeCount++;
-//                        tvLikeCount.setText(String.valueOf(post.likeCount));
-//                        Log.i("FavoriteTweet", "favorited onSuccess");
-//
-//                    } else { // else, if already favorited, unfavorite
-//                        post.unlikePost();
-//                        Drawable newHeart = context.getDrawable(R.drawable.ufi_heart);
-//                        ibLike.setImageDrawable(newHeart);
+//                        post.likes++
+                        //TODO: might need to make boolean
+                        tvLikes.setText(String.valueOf(post.getLikes()));
+                        Log.i("Like", "favorited onSuccess");
+
+                    } else { // else, if already favorited, unfavorite
+                        post.unlikePost();
+                        Drawable newHeart = context.getDrawable(R.drawable.ufi_heart);
+                        ibLike.setImageDrawable(newHeart);
 //                        post.isLiked = false;
 //                        post.likeCount --;
-//                        tvLikeCount.setText(String.valueOf(post.likeCount));
-//                        Log.i("UnfavoriteTweet", "unfavorited onSuccess");
-//                    }
-//                }
-//        });
+                        tvLikes.setText(String.valueOf(post.getLikes()));
+                        Log.i("Unlike", "unfavorited onSuccess");
+                    }
+                }
+        });
         }
     }
 
